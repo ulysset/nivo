@@ -399,7 +399,7 @@
             d: areaGenerator(data.map(function (d) {
               return d.position;
             })),
-            fill: chroma(color).alpha(0.1).css(),
+            fill: chroma(color).luminance(areaBrightness).css(),
             fillOpacity: areaOpacity,
             strokeWidth: 0,
             style: {
