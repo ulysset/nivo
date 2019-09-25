@@ -7,7 +7,7 @@ import { BasicTooltip, TableTooltip, crosshairPropTypes, useTooltip, Crosshair }
 import { line, area } from 'd3-shape';
 import { scalePropType, computeXYScalesForSeries } from '@nivo/scales';
 import PropTypes from 'prop-types';
-import { rgb } from 'd3-color';
+import { color } from 'd3-color';
 import { TransitionMotion, spring } from 'react-motion';
 import { Mesh as Mesh$2, useVoronoiMesh, renderVoronoiToCanvas, renderVoronoiCellToCanvas } from '@nivo/voronoi';
 
@@ -396,13 +396,13 @@ var Areas = function Areas(_ref) {
     return React.createElement("g", null, lines.slice(0).reverse().map(function (_ref2) {
       var id = _ref2.id,
           data = _ref2.data,
-          color = _ref2.color;
+          color$1 = _ref2.color;
       return React.createElement("path", {
         key: id,
         d: areaGenerator(data.map(function (d) {
           return d.position;
         })),
-        fill: rgb(color).opacity(areaBrightness).toString(),
+        fill: color(color$1).opacity(areaBrightness).toString(),
         fillOpacity: areaOpacity,
         strokeWidth: 0,
         style: {
@@ -414,7 +414,7 @@ var Areas = function Areas(_ref) {
   return React.createElement("g", null, lines.slice(0).reverse().map(function (_ref3) {
     var id = _ref3.id,
         data = _ref3.data,
-        color = _ref3.color;
+        color$1 = _ref3.color;
     return React.createElement(SmartMotion, {
       key: id,
       style: function style(spring) {
@@ -422,14 +422,14 @@ var Areas = function Areas(_ref) {
           d: spring(areaGenerator(data.map(function (d) {
             return d.position;
           })), springConfig),
-          fill: spring(color, springConfig)
+          fill: spring(color$1, springConfig)
         };
       }
     }, function (style) {
       return React.createElement("path", {
         key: id,
         d: style.d,
-        fill: rgb(color).brighter(areaBrightness).toString(),
+        fill: color(color$1).brighter(areaBrightness).toString(),
         fillOpacity: areaOpacity,
         strokeWidth: 0,
         style: {
