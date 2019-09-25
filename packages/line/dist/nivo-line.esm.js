@@ -402,7 +402,7 @@ var Areas = function Areas(_ref) {
         d: areaGenerator(data.map(function (d) {
           return d.position;
         })),
-        fill: rgb(color).brighter(areaBrightness).toString(),
+        fill: rgb(color).opacity(areaBrightness).toString(),
         fillOpacity: areaOpacity,
         strokeWidth: 0,
         style: {
