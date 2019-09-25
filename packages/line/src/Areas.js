@@ -9,7 +9,7 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { useMotionConfig, SmartMotion, blendModePropType } from '@nivo/core'
-import { color as d3Color } from 'd3-color'
+import { rgb as d3Color } from 'd3-color'
 
 const Areas = ({ areaGenerator, areaOpacity, areaBlendMode, lines, areaBrightness }) => {
     const { animate, springConfig } = useMotionConfig()

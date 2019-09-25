@@ -398,7 +398,7 @@
             d: areaGenerator(data.map(function (d) {
               return d.position;
             })),
-            fill: d3Color.color(color).copy({
+            fill: d3Color.rgb(color).copy({
               opacity: areaBrightness
             }).toString(),
             fillOpacity: areaOpacity,
@@ -427,7 +427,7 @@
           return React__default.createElement("path", {
             key: id,
             d: style.d,
-            fill: d3Color.color(color).brighter(areaBrightness).toString(),
+            fill: d3Color.rgb(color).brighter(areaBrightness).toString(),
             fillOpacity: areaOpacity,
             strokeWidth: 0,
             style: {
