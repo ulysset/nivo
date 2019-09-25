@@ -7,8 +7,5 @@ coverage
 
 package-lock.json
 
-build
-
-/packages/*/dist
 
 *.lerna_backup
