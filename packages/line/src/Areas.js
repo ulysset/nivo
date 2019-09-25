@@ -25,7 +25,7 @@ const Areas = ({ areaGenerator, areaOpacity, areaBlendMode, lines, areaBrightnes
                             key={id}
                             d={areaGenerator(data.map(d => d.position))}
                             fill={d3Color(color)
-                                .opacity(areaBrightness)
+                                .copy({ opacity: areaBrightness })
                                 .toString()}
                             fillOpacity={areaOpacity}
                             strokeWidth={0}
