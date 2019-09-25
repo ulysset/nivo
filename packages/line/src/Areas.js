@@ -43,19 +43,21 @@ const Areas = ({ areaGenerator, areaOpacity, areaBlendMode, lines, areaBrightnes
             {lines
                 .slice(0)
                 .reverse()
-                .map(({ id, data, color: areaColor }) => (
+                .map(({ id, data, color }) => (
                     <SmartMotion
                         key={id}
                         style={spring => ({
                             d: spring(areaGenerator(data.map(d => d.position)), springConfig),
-                            fill: spring(areaColor, springConfig),
+                            fill: spring(color, springConfig),
                         })}
                     >
                         {style => (
                             <path
                                 key={id}
                                 d={style.d}
-                                fill={areaColor}
+                                fill={rgb(color)
+                                    .brighter(areaBrightness)
+                                    .toString()}
                                 fillOpacity={areaOpacity}
                                 strokeWidth={0}
                                 style={{ mixBlendMode: areaBlendMode }}

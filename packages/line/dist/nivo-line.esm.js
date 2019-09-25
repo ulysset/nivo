@@ -414,7 +414,7 @@ var Areas = function Areas(_ref) {
   return React.createElement("g", null, lines.slice(0).reverse().map(function (_ref3) {
     var id = _ref3.id,
         data = _ref3.data,
-        areaColor = _ref3.color;
+        color = _ref3.color;
     return React.createElement(SmartMotion, {
       key: id,
       style: function style(spring) {
@@ -422,14 +422,14 @@ var Areas = function Areas(_ref) {
           d: spring(areaGenerator(data.map(function (d) {
             return d.position;
           })), springConfig),
-          fill: spring(areaColor, springConfig)
+          fill: spring(color, springConfig)
         };
       }
     }, function (style) {
       return React.createElement("path", {
         key: id,
         d: style.d,
-        fill: areaColor,
+        fill: rgb(color).brighter(areaBrightness).toString(),
         fillOpacity: areaOpacity,
         strokeWidth: 0,
         style: {
