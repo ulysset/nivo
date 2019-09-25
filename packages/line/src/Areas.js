@@ -10,6 +10,7 @@ import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { useMotionConfig, SmartMotion, blendModePropType } from '@nivo/core'
 import { rgb } from 'd3-color'
+import chroma from 'chroma-js'
 
 const Areas = ({ areaGenerator, areaOpacity, areaBlendMode, lines, areaBrightness }) => {
     const { animate, springConfig } = useMotionConfig()
@@ -24,9 +25,9 @@ const Areas = ({ areaGenerator, areaOpacity, areaBlendMode, lines, areaBrightnes
                         <path
                             key={id}
                             d={areaGenerator(data.map(d => d.position))}
-                            fill={rgb(color)
-                                .brighter(areaBrightness)
-                                .toString()}
+                            fill={chroma(color)
+                                .alpha(0.1)
+                                .css()}
                             fillOpacity={areaOpacity}
                             strokeWidth={0}
                             style={{

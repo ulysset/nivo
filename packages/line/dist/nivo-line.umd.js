@@ -1,11 +1,12 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('@nivo/core'), require('@nivo/colors'), require('@nivo/axes'), require('@nivo/legends'), require('@nivo/tooltip'), require('d3-shape'), require('@nivo/scales'), require('prop-types'), require('d3-color'), require('react-motion'), require('@nivo/voronoi')) :
-    typeof define === 'function' && define.amd ? define(['exports', 'react', '@nivo/core', '@nivo/colors', '@nivo/axes', '@nivo/legends', '@nivo/tooltip', 'd3-shape', '@nivo/scales', 'prop-types', 'd3-color', 'react-motion', '@nivo/voronoi'], factory) :
-    (global = global || self, factory(global.nivo = global.nivo || {}, global.React, global.nivo, global.nivo, global.nivo, global.nivo, global.nivo, global.d3, global.nivo, global.PropTypes, global.d3, global.ReactMotion, global.nivo));
-}(this, function (exports, React, core, colors, axes, legends, tooltip, d3Shape, scales, PropTypes, d3Color, reactMotion, voronoi) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('@nivo/core'), require('@nivo/colors'), require('@nivo/axes'), require('@nivo/legends'), require('@nivo/tooltip'), require('d3-shape'), require('@nivo/scales'), require('prop-types'), require('d3-color'), require('chroma-js'), require('react-motion'), require('@nivo/voronoi')) :
+    typeof define === 'function' && define.amd ? define(['exports', 'react', '@nivo/core', '@nivo/colors', '@nivo/axes', '@nivo/legends', '@nivo/tooltip', 'd3-shape', '@nivo/scales', 'prop-types', 'd3-color', 'chroma-js', 'react-motion', '@nivo/voronoi'], factory) :
+    (global = global || self, factory(global.nivo = global.nivo || {}, global.React, global.nivo, global.nivo, global.nivo, global.nivo, global.nivo, global.d3, global.nivo, global.PropTypes, global.d3, global['chroma-js'], global.ReactMotion, global.nivo));
+}(this, function (exports, React, core, colors, axes, legends, tooltip, d3Shape, scales, PropTypes, d3Color, chroma, reactMotion, voronoi) { 'use strict';
 
     var React__default = 'default' in React ? React['default'] : React;
     PropTypes = PropTypes && PropTypes.hasOwnProperty('default') ? PropTypes['default'] : PropTypes;
+    chroma = chroma && chroma.hasOwnProperty('default') ? chroma['default'] : chroma;
 
     var LinePointTooltip = function LinePointTooltip(_ref) {
       var point = _ref.point;
@@ -398,7 +399,7 @@
             d: areaGenerator(data.map(function (d) {
               return d.position;
             })),
-            fill: d3Color.rgb(color).brighter(areaBrightness).toString(),
+            fill: chroma(color).alpha(0.1).css(),
             fillOpacity: areaOpacity,
             strokeWidth: 0,
             style: {
