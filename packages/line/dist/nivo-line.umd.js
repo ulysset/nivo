@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('@nivo/core'), require('@nivo/colors'), require('@nivo/axes'), require('@nivo/legends'), require('@nivo/tooltip'), require('d3-shape'), require('@nivo/scales'), require('prop-types'), require('react-motion'), require('@nivo/voronoi')) :
-    typeof define === 'function' && define.amd ? define(['exports', 'react', '@nivo/core', '@nivo/colors', '@nivo/axes', '@nivo/legends', '@nivo/tooltip', 'd3-shape', '@nivo/scales', 'prop-types', 'react-motion', '@nivo/voronoi'], factory) :
-    (global = global || self, factory(global.nivo = global.nivo || {}, global.React, global.nivo, global.nivo, global.nivo, global.nivo, global.nivo, global.d3, global.nivo, global.PropTypes, global.ReactMotion, global.nivo));
-}(this, function (exports, React, core, colors, axes, legends, tooltip, d3Shape, scales, PropTypes, reactMotion, voronoi) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('@nivo/core'), require('@nivo/colors'), require('@nivo/axes'), require('@nivo/legends'), require('@nivo/tooltip'), require('d3-shape'), require('@nivo/scales'), require('prop-types'), require('d3-color'), require('react-motion'), require('@nivo/voronoi')) :
+    typeof define === 'function' && define.amd ? define(['exports', 'react', '@nivo/core', '@nivo/colors', '@nivo/axes', '@nivo/legends', '@nivo/tooltip', 'd3-shape', '@nivo/scales', 'prop-types', 'd3-color', 'react-motion', '@nivo/voronoi'], factory) :
+    (global = global || self, factory(global.nivo = global.nivo || {}, global.React, global.nivo, global.nivo, global.nivo, global.nivo, global.nivo, global.d3, global.nivo, global.PropTypes, global.d3, global.ReactMotion, global.nivo));
+}(this, function (exports, React, core, colors, axes, legends, tooltip, d3Shape, scales, PropTypes, d3Color, reactMotion, voronoi) { 'use strict';
 
     var React__default = 'default' in React ? React['default'] : React;
     PropTypes = PropTypes && PropTypes.hasOwnProperty('default') ? PropTypes['default'] : PropTypes;
@@ -383,7 +383,8 @@
       var areaGenerator = _ref.areaGenerator,
           areaOpacity = _ref.areaOpacity,
           areaBlendMode = _ref.areaBlendMode,
-          lines = _ref.lines;
+          lines = _ref.lines,
+          areaBrightness = _ref.areaBrightness;
       var _useMotionConfig = core.useMotionConfig(),
           animate = _useMotionConfig.animate,
           springConfig = _useMotionConfig.springConfig;
@@ -391,13 +392,13 @@
         return React__default.createElement("g", null, lines.slice(0).reverse().map(function (_ref2) {
           var id = _ref2.id,
               data = _ref2.data,
-              areaColor = _ref2.color;
+              color = _ref2.color;
           return React__default.createElement("path", {
             key: id,
             d: areaGenerator(data.map(function (d) {
               return d.position;
             })),
-            fill: areaColor,
+            fill: d3Color.rgb(color).brighter(areaBrightness).toString(),
             fillOpacity: areaOpacity,
             strokeWidth: 0,
             style: {
@@ -438,7 +439,8 @@
       areaGenerator: PropTypes.func.isRequired,
       areaOpacity: PropTypes.number.isRequired,
       areaBlendMode: core.blendModePropType.isRequired,
-      lines: PropTypes.arrayOf(PropTypes.object).isRequired
+      lines: PropTypes.arrayOf(PropTypes.object).isRequired,
+      areaBrightness: PropTypes.number.isRequired
     };
     var Areas$1 = React.memo(Areas);
 
@@ -805,6 +807,7 @@
           enableArea = props.enableArea,
           areaOpacity = props.areaOpacity,
           areaBlendMode = props.areaBlendMode,
+          areaBrightness = props.areaBrightness,
           enablePoints = props.enablePoints,
           pointSymbol = props.pointSymbol,
           pointSize = props.pointSize,
@@ -938,6 +941,7 @@
           areaGenerator: areaGenerator,
           areaOpacity: areaOpacity,
           areaBlendMode: areaBlendMode,
+          areaBrightness: areaBrightness,
           lines: series
         });
       }

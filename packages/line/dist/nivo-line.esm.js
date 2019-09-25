@@ -7,6 +7,7 @@ import { BasicTooltip, TableTooltip, crosshairPropTypes, useTooltip, Crosshair }
 import { line, area } from 'd3-shape';
 import { scalePropType, computeXYScalesForSeries } from '@nivo/scales';
 import PropTypes from 'prop-types';
+import { rgb } from 'd3-color';
 import { TransitionMotion, spring } from 'react-motion';
 import { Mesh as Mesh$2, useVoronoiMesh, renderVoronoiToCanvas, renderVoronoiCellToCanvas } from '@nivo/voronoi';
 
@@ -386,7 +387,8 @@ var Areas = function Areas(_ref) {
   var areaGenerator = _ref.areaGenerator,
       areaOpacity = _ref.areaOpacity,
       areaBlendMode = _ref.areaBlendMode,
-      lines = _ref.lines;
+      lines = _ref.lines,
+      areaBrightness = _ref.areaBrightness;
   var _useMotionConfig = useMotionConfig(),
       animate = _useMotionConfig.animate,
       springConfig = _useMotionConfig.springConfig;
@@ -394,13 +396,13 @@ var Areas = function Areas(_ref) {
     return React.createElement("g", null, lines.slice(0).reverse().map(function (_ref2) {
       var id = _ref2.id,
           data = _ref2.data,
-          areaColor = _ref2.color;
+          color = _ref2.color;
       return React.createElement("path", {
         key: id,
         d: areaGenerator(data.map(function (d) {
           return d.position;
         })),
-        fill: areaColor,
+        fill: rgb(color).brighter(areaBrightness).toString(),
         fillOpacity: areaOpacity,
         strokeWidth: 0,
         style: {
@@ -441,7 +443,8 @@ Areas.propTypes = {
   areaGenerator: PropTypes.func.isRequired,
   areaOpacity: PropTypes.number.isRequired,
   areaBlendMode: blendModePropType.isRequired,
-  lines: PropTypes.arrayOf(PropTypes.object).isRequired
+  lines: PropTypes.arrayOf(PropTypes.object).isRequired,
+  areaBrightness: PropTypes.number.isRequired
 };
 var Areas$1 = memo(Areas);
 
@@ -808,6 +811,7 @@ var Line = function Line(props) {
       enableArea = props.enableArea,
       areaOpacity = props.areaOpacity,
       areaBlendMode = props.areaBlendMode,
+      areaBrightness = props.areaBrightness,
       enablePoints = props.enablePoints,
       pointSymbol = props.pointSymbol,
       pointSize = props.pointSize,
@@ -941,6 +945,7 @@ var Line = function Line(props) {
       areaGenerator: areaGenerator,
       areaOpacity: areaOpacity,
       areaBlendMode: areaBlendMode,
+      areaBrightness: areaBrightness,
       lines: series
     });
   }

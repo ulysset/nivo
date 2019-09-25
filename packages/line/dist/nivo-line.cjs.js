@@ -14,6 +14,7 @@ var tooltip = require('@nivo/tooltip');
 var d3Shape = require('d3-shape');
 var scales = require('@nivo/scales');
 var PropTypes = _interopDefault(require('prop-types'));
+var d3Color = require('d3-color');
 var reactMotion = require('react-motion');
 var voronoi = require('@nivo/voronoi');
 
@@ -393,7 +394,8 @@ var Areas = function Areas(_ref) {
   var areaGenerator = _ref.areaGenerator,
       areaOpacity = _ref.areaOpacity,
       areaBlendMode = _ref.areaBlendMode,
-      lines = _ref.lines;
+      lines = _ref.lines,
+      areaBrightness = _ref.areaBrightness;
   var _useMotionConfig = core.useMotionConfig(),
       animate = _useMotionConfig.animate,
       springConfig = _useMotionConfig.springConfig;
@@ -401,13 +403,13 @@ var Areas = function Areas(_ref) {
     return React__default.createElement("g", null, lines.slice(0).reverse().map(function (_ref2) {
       var id = _ref2.id,
           data = _ref2.data,
-          areaColor = _ref2.color;
+          color = _ref2.color;
       return React__default.createElement("path", {
         key: id,
         d: areaGenerator(data.map(function (d) {
           return d.position;
         })),
-        fill: areaColor,
+        fill: d3Color.rgb(color).brighter(areaBrightness).toString(),
         fillOpacity: areaOpacity,
         strokeWidth: 0,
         style: {
@@ -448,7 +450,8 @@ Areas.propTypes = {
   areaGenerator: PropTypes.func.isRequired,
   areaOpacity: PropTypes.number.isRequired,
   areaBlendMode: core.blendModePropType.isRequired,
-  lines: PropTypes.arrayOf(PropTypes.object).isRequired
+  lines: PropTypes.arrayOf(PropTypes.object).isRequired,
+  areaBrightness: PropTypes.number.isRequired
 };
 var Areas$1 = React.memo(Areas);
 
@@ -815,6 +818,7 @@ var Line = function Line(props) {
       enableArea = props.enableArea,
       areaOpacity = props.areaOpacity,
       areaBlendMode = props.areaBlendMode,
+      areaBrightness = props.areaBrightness,
       enablePoints = props.enablePoints,
       pointSymbol = props.pointSymbol,
       pointSize = props.pointSize,
@@ -948,6 +952,7 @@ var Line = function Line(props) {
       areaGenerator: areaGenerator,
       areaOpacity: areaOpacity,
       areaBlendMode: areaBlendMode,
+      areaBrightness: areaBrightness,
       lines: series
     });
   }

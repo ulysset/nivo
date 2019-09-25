@@ -9,8 +9,9 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { useMotionConfig, SmartMotion, blendModePropType } from '@nivo/core'
+import { rgb } from 'd3-color'
 
-const Areas = ({ areaGenerator, areaOpacity, areaBlendMode, lines }) => {
+const Areas = ({ areaGenerator, areaOpacity, areaBlendMode, lines, areaBrightness }) => {
     const { animate, springConfig } = useMotionConfig()
 
     if (animate !== true) {
@@ -19,11 +20,13 @@ const Areas = ({ areaGenerator, areaOpacity, areaBlendMode, lines }) => {
                 {lines
                     .slice(0)
                     .reverse()
-                    .map(({ id, data, color: areaColor }) => (
+                    .map(({ id, data, color }) => (
                         <path
                             key={id}
                             d={areaGenerator(data.map(d => d.position))}
-                            fill={areaColor}
+                            fill={rgb(color)
+                                .brighter(areaBrightness)
+                                .toString()}
                             fillOpacity={areaOpacity}
                             strokeWidth={0}
                             style={{
@@ -69,6 +72,7 @@ Areas.propTypes = {
     areaOpacity: PropTypes.number.isRequired,
     areaBlendMode: blendModePropType.isRequired,
     lines: PropTypes.arrayOf(PropTypes.object).isRequired,
+    areaBrightness: PropTypes.number.isRequired,
 }
 
 export default memo(Areas)

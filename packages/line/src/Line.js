@@ -50,7 +50,7 @@ const Line = props => {
         enableArea,
         areaOpacity,
         areaBlendMode,
-
+        areaBrightness,
         enablePoints,
         pointSymbol,
         pointSize,
@@ -192,6 +192,7 @@ const Line = props => {
                 areaGenerator={areaGenerator}
                 areaOpacity={areaOpacity}
                 areaBlendMode={areaBlendMode}
+                areaBrightness={areaBrightness}
                 lines={series}
             />
         )
