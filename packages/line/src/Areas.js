@@ -26,7 +26,7 @@ const Areas = ({ areaGenerator, areaOpacity, areaBlendMode, lines, areaBrightnes
                             key={id}
                             d={areaGenerator(data.map(d => d.position))}
                             fill={chroma(color)
-                                .luminance(areaBrightness)
+                                .luminance(chroma(color).luminance() - areaBrightness)
                                 .css()}
                             fillOpacity={areaOpacity}
                             strokeWidth={0}
