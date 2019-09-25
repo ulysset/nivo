@@ -7,7 +7,7 @@ import { BasicTooltip, TableTooltip, crosshairPropTypes, useTooltip, Crosshair }
 import { line, area } from 'd3-shape';
 import { scalePropType, computeXYScalesForSeries } from '@nivo/scales';
 import PropTypes from 'prop-types';
-import { rgb } from 'd3-color';
+import 'd3-color';
 import chroma from 'chroma-js';
 import { TransitionMotion, spring } from 'react-motion';
 import { Mesh as Mesh$2, useVoronoiMesh, renderVoronoiToCanvas, renderVoronoiCellToCanvas } from '@nivo/voronoi';
@@ -430,7 +430,7 @@ var Areas = function Areas(_ref) {
       return React.createElement("path", {
         key: id,
         d: style.d,
-        fill: rgb(color).brighter(areaBrightness).toString(),
+        fill: chroma(color).luminance(chroma(color).luminance() - areaBrightness).css(),
         fillOpacity: areaOpacity,
         strokeWidth: 0,
         style: {

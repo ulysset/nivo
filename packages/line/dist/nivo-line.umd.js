@@ -426,7 +426,7 @@
           return React__default.createElement("path", {
             key: id,
             d: style.d,
-            fill: d3Color.rgb(color).brighter(areaBrightness).toString(),
+            fill: chroma(color).luminance(chroma(color).luminance() - areaBrightness).css(),
             fillOpacity: areaOpacity,
             strokeWidth: 0,
             style: {

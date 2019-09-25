@@ -56,9 +56,9 @@ const Areas = ({ areaGenerator, areaOpacity, areaBlendMode, lines, areaBrightnes
                             <path
                                 key={id}
                                 d={style.d}
-                                fill={rgb(color)
-                                    .brighter(areaBrightness)
-                                    .toString()}
+                                fill={chroma(color)
+                                    .luminance(chroma(color).luminance() - areaBrightness)
+                                    .css()}
                                 fillOpacity={areaOpacity}
                                 strokeWidth={0}
                                 style={{ mixBlendMode: areaBlendMode }}

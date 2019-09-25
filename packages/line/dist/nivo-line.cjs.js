@@ -14,7 +14,7 @@ var tooltip = require('@nivo/tooltip');
 var d3Shape = require('d3-shape');
 var scales = require('@nivo/scales');
 var PropTypes = _interopDefault(require('prop-types'));
-var d3Color = require('d3-color');
+require('d3-color');
 var chroma = _interopDefault(require('chroma-js'));
 var reactMotion = require('react-motion');
 var voronoi = require('@nivo/voronoi');
@@ -437,7 +437,7 @@ var Areas = function Areas(_ref) {
       return React__default.createElement("path", {
         key: id,
         d: style.d,
-        fill: d3Color.rgb(color).brighter(areaBrightness).toString(),
+        fill: chroma(color).luminance(chroma(color).luminance() - areaBrightness).css(),
         fillOpacity: areaOpacity,
         strokeWidth: 0,
         style: {
