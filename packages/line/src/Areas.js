@@ -9,7 +9,6 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { useMotionConfig, SmartMotion, blendModePropType } from '@nivo/core'
-import { rgb } from 'd3-color'
 import chroma from 'chroma-js'
 
 const Areas = ({ areaGenerator, areaOpacity, areaBlendMode, lines, areaBrightness }) => {
